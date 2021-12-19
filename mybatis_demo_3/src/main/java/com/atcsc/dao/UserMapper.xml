@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.atcsc.dao.UserMapper">
+
+
+
+    <select id="getUserList" resultType="com.atcsc.Pojo.User">
+        select * from mybatis.user
+    </select>
+
+    <insert id="addUser" parameterType="com.atcsc.Pojo.User" >
+        insert into user (id, name, pwd) values (#{id}, #{name}, #{pwd})
+    </insert>
+
+    <delete id="delUser" parameterType="int">
+        delete from user where id = #{id}
+    </delete>
+
+    <update id="updateUser" parameterType="com.atcsc.Pojo.User">
+        update user set name=#{name},pwd=#{pwd} where id=#{id}
+    </update>
+
+<!--    <select id="selectUserById" parameterType="int" resultType="com.atcsc.Pojo.User">-->
+<!--        select * from user where id = #{id}-->
+<!--    </select>-->
+    
+    <select id="getUserByLimit" parameterType="map" resultType="com.atcsc.Pojo.User">
+        select * from user Limit #{startIndex}, #{pageSize}
+    </select>
+
+    <select id="getUserByRowBound" resultType="user">
+        select * from user
+    </select>
+
+</mapper>
